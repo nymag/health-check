@@ -39,9 +39,7 @@ statList = {
   freeMem: function () { return os.freemem(); },
   loadAvg: function () { return os.loadavg(); },
   heap: function () { return v8.getHeapStatistics(); },
-  host: function () { return os.hostname(); },
-  redisEndpoint: function () { return process.env.REDIS_HOST; },
-  elasticSearchEndpoint: function () { return process.env.ELASTIC_HOST; }
+  host: function () { return os.hostname(); }
 };
 
 
@@ -51,16 +49,12 @@ function renderHealth(allStats) {
       errors = [];
 
     return bluebird.all(_.map(allStats, function (value, key) {
-      if (value.isRequired) {
-        const result = value();
+      var promise = bluebird.try(value).then(function (result) { stats[key] = result; });
 
-        if (_.isObject(result) && _.isFunction(result.then)) {
-          return result.then(function (result) { stats[key] = result; });
-        } else {
-          stats[key] = result;
-        }
+      if (value.isRequired) {
+        return promise;
       } else {
-        return bluebird.try(value).then(function (result) { stats[key] = result; }).catch(function (ex) {
+        return promise.catch(function (ex) {
           errors.push(ex.message);
         });
       }
