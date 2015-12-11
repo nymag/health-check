@@ -1,0 +1,23 @@
+.DS_Store
+.idea
+
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.iml
+
+npm-debug.log
+node_modules
+coverage.html
+Dockerfile
+
+# config (get local from someone on your team if you need it)
+local.yaml
+
+# public folder (compiled assets)
+public
