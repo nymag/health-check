@@ -27,6 +27,9 @@ express.use(healthCheck({
 ```
 
 ### Custom fields
+
+Throw errors in custom fields will return a 500.
+
 ```js
 var express = require('express'),
   healthCheck = require('@nymdev/health-check');
