@@ -1,10 +1,10 @@
 {
-  "name": "health-check",
+  "name": "@nymdev/health-check",
   "version": "0.0.1",
   "description": "routes for a standardized health-check",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "node_modules/.bin/mocha"
   },
   "keywords": [
     "health-check",
