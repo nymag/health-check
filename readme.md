@@ -12,7 +12,40 @@ var express = require('express'),
 express.use(healthCheck());
 ```
 
+exposes `/health-check` with the following information:
+
+```json
+{
+  "nodeVersionExpected": "4.0.0",
+  "nodeVersionActual": "4.2.1",
+  "memoryUsage": {
+    "rss": 66609152,
+    "heapTotal": 58772224,
+    "heapUsed": 28870104
+  },
+  "uptime": 14.538,
+  "totalMem": 17179869184,
+  "freeMem": 1396756480,
+  "loadAvg": [
+    1.736328125,
+    1.65234375,
+    1.76123046875
+  ],
+  "heap": {
+    "total_heap_size": 58772224,
+    "total_heap_size_executable": 7340032,
+    "total_physical_size": 58772224,
+    "total_available_size": 1483938640,
+    "used_heap_size": 28890440,
+    "heap_size_limit": 1535115264
+  },
+  "host": "<some hostname>"
+}
+```
+
 ### Environment variables
+
+Environment variables can be reported if they're useful.
 
 ```js
 var express = require('express'),
@@ -28,7 +61,7 @@ express.use(healthCheck({
 
 ### Custom fields
 
-Throw errors in custom fields will return a 500.
+Can add custom fields to be reported.  Thrown errors in custom fields will return a 500.
 
 ```js
 var express = require('express'),
@@ -48,7 +81,7 @@ express.use(healthCheck({
 
 ### Required fields
 
-Requires host, someName and REDIS_HOST to exist, or it returns 500.
+Missing fields will return a 500.
 
 ```js
 var express = require('express'),
