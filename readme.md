@@ -41,6 +41,7 @@ express.use(healthCheck({
     }
   }
 }));
+```
 
 ### Required fields
 
@@ -63,8 +64,10 @@ express.use(healthCheck({
     'REDIS_HOST'
   ]
 }));
+```
 
 ## Install
 
 ```bash
 npm install --save @nymdev/health-check
+```
