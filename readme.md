@@ -1,7 +1,15 @@
 Health Check
 =======
 
-Include in all Node projects
+Health-check middleware for Express.
+
+Returns either HTTP 200 or 500.
+
+Features
+- Fetches fields asynchronously (in parallel)
+- Supports Promises
+- Reports errors individually
+- Custom and optional (non-failing) fields
 
 ## Usage
 
@@ -70,10 +78,9 @@ var express = require('express'),
 express.use(healthCheck({
   stats: {
     searchExists: function () {
-      var search = require('./search'),
-        client = search && search.getInstance();
+      var searchService = require('./search');
 
-      return client.ping();
+      return searchService && searchService.ping();
     }
   }
 }));
