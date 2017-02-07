@@ -15,7 +15,7 @@
   "dependencies": {
     "bluebird": "^3.0.6",
     "express": "^4.13.3",
-    "js-yaml": "^3.4.6",
+    "js-yaml": "^3.8.0",
     "lodash": "^3.10.1"
   },
   "devDependencies": {
