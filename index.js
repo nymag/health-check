@@ -8,9 +8,7 @@ const _ = require('lodash'),
   os = require('os'),
   fs = require('fs'),
   yaml = require('js-yaml'),
-  healthPath = process.env.HEALTH_CHECK ? `${process.env.HEALTH_CHECK}/health-check` : 'health-check'
-
-  console.log(healthPath);
+  healthPath = process.env.HEALTH_CHECK ? `${process.env.HEALTH_CHECK}/health-check` : 'health-check';
 
 /**
  * @param {string} filename
