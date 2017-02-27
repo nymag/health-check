@@ -8,7 +8,7 @@ const _ = require('lodash'),
   os = require('os'),
   fs = require('fs'),
   yaml = require('js-yaml'),
-  healthPath = process.env.HEALTH_CHECK ? `${process.env.HEALTH_CHECK}/health-check` : 'health-check';
+  healthRoute = process.env.HEALTH_CHECK_PATH ? `${process.env.HEALTH_CHECK_PATH}/health-check` : 'health-check';
 
 /**
  * @param {string} filename
@@ -100,7 +100,7 @@ function routes(options) {
     }
   });
 
-  router.get('/' + healthPath, renderHealth(stats));
+  router.get('/' + healthRoute, renderHealth(stats));
 
   return router;
 }
