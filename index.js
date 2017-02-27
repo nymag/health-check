@@ -8,7 +8,7 @@ const _ = require('lodash'),
   os = require('os'),
   fs = require('fs'),
   yaml = require('js-yaml'),
-  healthRoute = process.env.HEALTH_CHECK_PATH ? `${process.env.HEALTH_CHECK_PATH}/health-check` : 'health-check';
+  healthRoute = process.env.HEALTH_CHECK_PATH;
 
 /**
  * @param {string} filename
@@ -100,7 +100,11 @@ function routes(options) {
     }
   });
 
-  router.get('/' + healthRoute, renderHealth(stats));
+  if (healthRoute) {
+  // e.g. /microservice-name/health-check
+  router.get('/' + healthRoute + '/health-check', renderHealth(stats));
+  }
+  router.get('/health-check', renderHealth(stats));
 
   return router;
 }
